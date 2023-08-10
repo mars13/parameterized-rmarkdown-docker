@@ -15,7 +15,12 @@ RUN  rm -f /var/lib/dpkg/available \
     git \
     pandoc
 
-COPY . /app/
+COPY ./install_packages.R /app/
+
+COPY ./generate_report.R /app/
+
+COPY ./parameterized_report.Rmd /app/
+
 
 WORKDIR /app
 
