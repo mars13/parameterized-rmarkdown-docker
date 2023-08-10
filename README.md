@@ -7,7 +7,7 @@ Template for parameterized reports with Rmarkdown
 Docker image is available at <https://hub.docker.com/r/mreixachs/rmarkdown-docker>
 
 ```         
-docker pull mreixachs/rmarkdown-docker
+docker pull mreixachs/rmarkdown-docker:[VERSION]
 ```
 
 ## Docker run
