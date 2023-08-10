@@ -1,0 +1,46 @@
+---
+title: "Report with params"
+author: "Marina Reixachs Solé"
+date: "`r Sys.Date()`"
+output: html_document
+params:
+    input: ''
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(formattable)
+```
+
+# Sample report with parameters from command line
+
+The `.Rmd` file is executed as the following:
+
+`Rscript -e "rmarkdown::render('template_report_cmdline_params.Rmd',params=list('sample_file.tsv'))"`
+
+If there is any trouble locating pandoc, first identify your pandoc location:
+
+`Sys.getenv("RSTUDIO_PANDOC")`
+
+Then add the path from that command to your R environment prior to rendering the Rmarkdown:
+
+`R -e "Sys.setenv(RSTUDIO_PANDOC='path_to_pandoc'); rmarkdown::render('template_report_cmdline_params.Rmd',params=list('sample_file.tsv'))"`
+
+
+## Read file
+
+```{r read_tsv}
+df = read.delim(file = params$input)
+```
+
+## Report table
+
+```{r table}
+formattable::formattable(df, list(
+  Murder =color_tile("white", "firebrick"),
+  Rape = color_tile("white", "firebrick"),
+  UrbanPop = formatter("span", style = x ~ ifelse(x > 60,
+    style(color = "#DE6E4B", font.weight = "bold"), NA)),area(col = c(Assault)) ~ normalize_bar("#7FD1B9", 0.6)
+))
+```
+
