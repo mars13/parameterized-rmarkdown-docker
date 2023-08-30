@@ -36,7 +36,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(formattable)
 ```
 
-# Sample report with parameters from command line
+# Parameterized Rmarkdown report
+
+## Execution
 
 The `.Rmd` file is executed as the following:
 
@@ -56,7 +58,7 @@ Then add the path from that command to your R environment prior to rendering the
 R -e "Sys.setenv(RSTUDIO_PANDOC='path_to_pandoc'); rmarkdown::render('template_report_cmdline_params.Rmd',params=list('sample_file.tsv'))"
 ```
 
-
+## Report
 
 ### Read file 
 
@@ -64,7 +66,7 @@ R -e "Sys.setenv(RSTUDIO_PANDOC='path_to_pandoc'); rmarkdown::render('template_r
 df = read.delim(file = params$input)
 ```
 
-### Report table 
+### Output table 
 
 ```{r table}
 formattable::formattable(df, list(
