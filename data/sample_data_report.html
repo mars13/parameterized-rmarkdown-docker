@@ -11,7 +11,7 @@
 
 <meta name="author" content="Marina Reixachs Solé" />
 
-<meta name="date" content="2023-08-14" />
+<meta name="date" content="2023-08-30" />
 
 <title>Report with params</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Report with params</h1>
 <h4 class="author">Marina Reixachs Solé</h4>
-<h4 class="date">08/14/2023</h4>
+<h4 class="date">08/30/2023</h4>
 
 </div>
 
@@ -368,8 +368,10 @@ position: right top;
 text-align: right;
 }
 </style>
-<div id="sample-report-with-parameters-from-command-line" class="section level1">
-<h1>Sample report with parameters from command line</h1>
+<div id="parameterized-rmarkdown-report" class="section level1">
+<h1>Parameterized Rmarkdown report</h1>
+<div id="execution" class="section level2">
+<h2>Execution</h2>
 <p>The <code>.Rmd</code> file is executed as the following:</p>
 <pre class="bash"><code>Rscript -e &quot;rmarkdown::render(&#39;template_report_cmdline_params.Rmd&#39;,params=list(&#39;sample_file.tsv&#39;))&quot;</code></pre>
 <p>If there is any trouble locating pandoc, first identify your pandoc
@@ -378,12 +380,15 @@ location:</p>
 <p>Then add the path from that command to your R environment prior to
 rendering the Rmarkdown:</p>
 <pre class="bash"><code>R -e &quot;Sys.setenv(RSTUDIO_PANDOC=&#39;path_to_pandoc&#39;); rmarkdown::render(&#39;template_report_cmdline_params.Rmd&#39;,params=list(&#39;sample_file.tsv&#39;))&quot;</code></pre>
+</div>
+<div id="report" class="section level2">
+<h2>Report</h2>
 <div id="read-file" class="section level3">
 <h3>Read file</h3>
 <pre class="r"><code>df = read.delim(file = params$input)</code></pre>
 </div>
-<div id="report-table" class="section level3">
-<h3>Report table</h3>
+<div id="output-table" class="section level3">
+<h3>Output table</h3>
 <pre class="r"><code>formattable::formattable(df, list(
   Murder =color_tile(&quot;white&quot;, &quot;firebrick&quot;),
   Rape = color_tile(&quot;white&quot;, &quot;firebrick&quot;),
@@ -1262,6 +1267,7 @@ Wyoming
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 
